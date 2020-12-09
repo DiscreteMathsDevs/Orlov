@@ -1,0 +1,31 @@
+ui_menu_file_for_finding_graph_minimal_spanning_tree 
+<- ui_user_command_class_atom; 
+   ui_user_command_class_view_kb;;
+
+ui_menu_file_for_finding_graph_minimal_spanning_tree 
+=> nrel_main_idtf: 
+    [Каково пересечение двух графов?] (* <- lang_ru;; *);;
+
+ui_menu_file_for_finding_graph_minimal_spanning_tree 
+=> nrel_main_idtf: 
+    [What is an intersection of two graphs?] (* <- lang_en;; *);;
+
+ui_menu_file_for_finding_graph_minimal_spanning_tree  
+=> ui_nrel_command_template:
+[*
+    question_of_finding_graph_minimal_spanning_tree 
+    _-> ._question_of_finding_graph_minimal_spanning_tree_instance
+    (*
+    _-> rrel_1:: ui_arg_1;;
+    _-> rrel_2:: ui_arg_2;;
+    *);;
+    ._question_of_finding_graph_minimal_spanning_tree_instance _<- question;;
+*];;
+
+ui_menu_file_for_finding_graph_minimal_spanning_tree 
+=> ui_nrel_command_lang_template: [Результат пересечения двух графов $ui_arg_1 и $ui_arg_2] 
+(* <- lang_ru;; *);;
+
+ui_menu_file_for_finding_graph_minimal_spanning_tree  
+=> ui_nrel_command_lang_template: [The result of intersection of two graphs $ui_arg_1 and $ui_arg_2]
+(* <- lang_en;; *);;

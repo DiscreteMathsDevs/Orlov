@@ -1,0 +1,327 @@
+scp_program -> proc_of_finding_graphs_intersection
+(*	
+	-> rrel_params: ...
+    (*
+		-> rrel_1: rrel_in: _graph1;;
+		-> rrel_2: rrel_in: _graph2;;
+		-> rrel_3: rrel_in: _result;;
+	*);;
+
+	-> rrel_operators: ...
+    (*
+        -> rrel_init: ..proc_of_finding_graphs_intersection_operator0_1 // множество его вершин
+        (*
+            <- genEl;;
+
+            -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _result_nodes;;
+
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator0_1_0;;
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator0_1_0 // здесь я пытался провести отношение вершина' от графа к этому множеству
+        (*
+            <- genElStr5;;
+
+            -> rrel_1: rrel_fixed: rrel_const: rrel_node: rrel_scp_var: _result;;
+            -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc0;;
+            -> rrel_3: rrel_fixed: rrel_const: rrel_node: rrel_scp_var: _result_nodes;;
+            -> rrel_4: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc0_1;;
+            -> rrel_5: rrel_fixed: rrel_scp_const: rrel_node: rrel_const: rrel_nodes;;
+
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator0_2;;
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator0_2 // создаю множество для дуг
+        (*
+            <- genEl;;
+            -> rrel_1: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _result_arcs;;
+
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator0_2_0;;
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator0_2_0 // здесь я пытался провести отношение дуга' от графа к этому множеству
+        (*
+            <- genElStr5;;
+            -> rrel_1: rrel_fixed: rrel_const: rrel_node: rrel_scp_var: _result;;
+            -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+            -> rrel_3: rrel_fixed: rrel_const: rrel_node: rrel_scp_var: _result_arcs;;
+            -> rrel_4: rrel_assign: rrel_scp_var: rrel_pos_const_perm: _arc0_2;;
+            -> rrel_5: rrel_fixed: rrel_scp_const: rrel_node: rrel_const: rrel_oredges;;
+
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator1;;
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator1 // получаем множество вершин первого графа
+        (*
+			<- searchSetStr5;;
+			
+			-> rrel_1: rrel_fixed: rrel_scp_var: _graph1;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_fixed: rrel_scp_var: _el3;;
+			-> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc4;;
+			-> rrel_5: rrel_fixed: rrel_scp_const: rrel_nodes;;
+			
+			=> nrel_then: ..proc_of_finding_graphs_intersection_operator2;;
+			=> nrel_else: ..proc_of_finding_graphs_intersection_return;; // если вершин у графа нет, то расходимся по домам
+		*);;
+
+        -> ..proc_of_finding_graphs_intersection_operator2 // получаем множество вершин второго графа
+        (*
+            <- searchSetStr5;;
+			
+			-> rrel_1: rrel_fixed: rrel_scp_var: _graph2;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_fixed: rrel_scp_var: _two_vertices_set;;
+			-> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc4;;
+			-> rrel_5: rrel_fixed: rrel_scp_const: rrel_nodes;;
+			
+			=> nrel_then: ..proc_of_finding_graphs_intersection_operator3;;
+			=> nrel_else: ..proc_of_finding_graphs_intersection_return;; // если вершин у графа нет, то расходимся по домам
+        *);;
+
+        // здесь начинается цикл (пересечение вершин)
+
+        -> ..proc_of_finding_graphs_intersection_operator3 // берём какую-то вершину из множества вершин первого графа
+        (*
+            <- searchELStr3;;
+
+            -> rrel_1: rrel_fixed: rrel_scp_var: _nodes1;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc1;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _vertex1;;
+
+            => nrel_then: ..proc_of_finding_graphs_intersection_operator4;;
+			=> nrel_else: ..proc_of_finding_graphs_intersection_return;; // множество вершин графа пустое, расходимся по домам
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator4 // берём какую-то вершину из множества вершин второго графа
+        (*
+            <- searchELStr3;;
+
+            -> rrel_1: rrel_fixed: rrel_scp_var: _nodes2;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _vertex2;;
+
+            => nrel_then: ..proc_of_finding_graphs_intersection_operator5;;
+			=> nrel_else: ..proc_of_finding_graphs_intersection_return;; // множество вершин графа пустое, расходимся по домам
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator5 // сравниваем на совпадение вершину1 и вершину 2
+        (*
+            <- ifEq;;
+
+            -> rrel_1: _vertex1;;
+            -> rrel_2: _vertex2;;
+
+            => nrel_then: ..proc_of_finding_graphs_intersection_operator6;;
+			=> nrel_else: ..proc_of_finding_graphs_intersection_operator7;;
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator6 // если совпали, добавляем во множество рузельт нодес
+        (*
+            <- genElStr3;;
+
+            -> rrel_1: rrel_fixed: rrel_scp_var: _result_nodes;;
+            -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+            -> rrel_3: rrel_assign: rrel_scp_var: _vertex1;;
+
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator7;;
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator7 // удаляем дугу к рассмотренной вершине
+        (*
+            <- eraseEl;;
+            -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc2;;
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator8;;
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator8 // вершины в списке остались?
+        (*
+            <- ifVarAssign;;
+
+            -> rrel_1: _nodes2;;
+
+            => nrel_then: ..proc_of_finding_graphs_intersection_operator4;; // если да, берём слудующую и повторяем всю эту мутню (по вершинам второго графа)
+            => nrel_else: ..proc_of_finding_graphs_intersection_operator9;; // если нет, смотрим следующую вершину из вершин первого (верхнего) графа и проходимя опять по всем вершинам из второго графа
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator9 // удаляем дугу от врешин первого графа к рассмотренной, идём дальше по вершинам первого (верхнего) графа
+        (*
+            <- eraseEl;;
+
+            -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc1;;
+
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator10;;
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator10 // остались ли вершины у первого графа, которые еще не рассмотрели?
+        (*
+            <- ifVarAssign;;
+
+            -> rrel_1: _nodes2;;
+
+            => nrel_then: ..proc_of_finding_graphs_intersection_operator4;; // идем смотреть следующую
+            => nrel_else: ..proc_of_finding_graphs_intersection_operator11;; // погнали по рёбрам
+        *);;
+
+        // конец цикла (пересечение вершин)
+        // здесь начинается цикл (пересечение дуг)
+
+        -> ..proc_of_finding_graphs_intersection_operator11 // получаем множество дуг первого графа
+        (*
+			<- searchSetStr5;;
+			
+			-> rrel_1: rrel_fixed: rrel_scp_var: _graph1;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _el3;;
+			-> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc4;;
+			-> rrel_5: rrel_fixed: rrel_scp_const: rrel_oredges;;
+			
+			-> rrel_set_3: rrel_assign: rrel_scp_var: _arcs1;;
+			
+			=> nrel_then: ..proc_of_finding_graphs_intersection_operator12;;
+			=> nrel_else: ..proc_of_finding_graphs_intersection_operator24;; // дуг нет, тогда выводим граф (он получается только из вершин)
+		*);;
+
+        -> ..proc_of_finding_graphs_intersection_operator12 // получаем множество дуг второго графа
+        (*
+			<- searchSetStr5;;
+			
+			-> rrel_1: rrel_fixed: rrel_scp_var: _graph2;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _el3;;
+			-> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc4;;
+			-> rrel_5: rrel_fixed: rrel_scp_const: rrel_oredges;;
+			
+			-> rrel_set_3: rrel_assign: rrel_scp_var: _arcs2;;
+			
+			=> nrel_then: ..proc_of_finding_graphs_intersection_operator13;;
+			=> nrel_else: ..proc_of_finding_graphs_intersection_operator24;;  // дуг нет, тогда выводим граф (он получается только из вершин)
+		*);;
+
+        -> ..proc_of_finding_graphs_intersection_operator13 // рассматриваем одну из них (для первого графа)
+        (*
+            <- searchElStr3;;
+
+            -> rrel_1: rrel_fixed: rrel_scp_var: _arcs1;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc_to_arc1;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _arc1;;
+
+            => nrel_then: ..proc_of_finding_graphs_intersection_operator14;;
+			=> nrel_else: ..proc_of_finding_graphs_intersection_operator24;; // ой, множесво пустое, заканчиваем
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator14 // получаем инцидентные этой дуге вершины
+        (*
+            <- searchElStr3;;
+
+			-> rrel_1: rrel_assign: rrel_scp_var: _vertex1_1;;
+			-> rrel_2: rrel_fixed: rrel_edge: rrel_scp_var: _arc1;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _vertex1_2;;	
+
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator15;;
+			// => nrel_then: ..proc_of_finding_graphs_intersection_operator15;; 
+			// => nrel_else: ..proc_of_finding_graphs_intersection_operator24;; // что за фейк ребро? такого не бывает и вообще тут только один вариант, но коменты оставим, мало ли)
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator15 // рассматриваем одну из дуг (для первого графа) берём начало-конец одной дуги
+        (*
+            <- searchElStr3;;
+
+            -> rrel_1: rrel_fixed: rrel_scp_var: _arcs2;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc_to_arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _arc2;;
+
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator15;;
+            //=> nrel_then: ..proc_of_finding_graphs_intersection_operator16;; так же, как и выше
+			//=> nrel_else: ...proc_of_finding_graphs_intersection_operator24;; // показать резулт граф
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator16 // рассматриваем другую дугу (для второго графа) берём начало-конец этой дуги
+        (*
+            <- searchElStr3;;
+
+            -> rrel_1: rrel_assign: rrel_scp_var: _vertex2_1;;
+			-> rrel_2: rrel_fixed: rrel_edge: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _vertex2_2;;	
+
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator17;;
+            //=> nrel_then: ..proc_of_finding_graphs_intersection_operator17;;
+			//=> nrel_else: ..proc_of_finding_graphs_intersection9999999999;; // показать резулт граф
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator17 // сравниваем начало ребра1 и начало ребра2
+        (*
+            <- ifEq;;
+
+            -> rrel_1: _vertex1_1;;
+            -> rrel_2: _vertex2_1;;
+
+            => nrel_then: ..proc_of_finding_graphs_intersection_operator18;;
+            => nrel_else: ..proc_of_finding_graphs_intersection_operator7;; // если не равны, то берём следующего ребро (второго графа)
+    
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator18 // теперь сравниваемконцы рёбер
+        (*
+            <- ifEq;;
+
+            -> rrel_1: _vertex1_2;;
+            -> rrel_2: _vertex2_2;;
+
+            => nrel_then: ..proc_of_finding_graphs_intersection_operator19;;
+            => nrel_else: ..proc_of_finding_graphs_intersection_operator7;; // если не равны, то берём следующего ребро (второго графа)
+    
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator19 // если все нужные вершины совпали, добавляем ребро во множество результ графа
+        (*
+            <- genElStr3;;
+
+            -> rrel_1: rrel_fixed: rrel_scp_var: _result_arcs;;
+            -> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc_to_arcs;;
+            -> rrel_3: rrel_assign: rrel_scp_var: _arc2;;
+
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator20;;
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator20 // удаляем рассмотренное ребро
+        (*
+            <- eraseEl;;
+            -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc_to_arc2;;
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator21;;
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator21 // а еще ребра есть? (второго графа)
+        (*
+            <- ifVarAssign;;
+
+            -> rrel_1: _arcs2;;
+
+            => nrel_then: ..proc_of_finding_graphs_intersection_operator15;; // идем в цикле по след ребру
+            => nrel_else: ..proc_of_finding_graphs_intersection_operator22;;
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator22 // удаляем ребро верхнего (первого) графа, так как сравнили сов семи ребрами из второго множества
+        (*
+            <- eraseEl;;
+            -> rrel_1: rrel_fixed: rrel_erase: rrel_scp_var: _arc_to_arc1;;
+            => nrel_goto: ..proc_of_finding_graphs_intersection_operator23;;
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_operator23 // верхние ребра (первого) графа закончились?
+        (*
+            <- ifVarAssign;;
+
+            -> rrel_1: _arcs1;;
+
+            => nrel_then: ..proc_of_finding_graphs_intersection_operator13;; // нет -- идем дальше сверять
+            => nrel_else: ..proc_of_finding_graphs_intersection_operator24;; 
+        *);;
+
+        -> ..proc_of_finding_graphs_intersection_return // пара пара пам! конец!
+        (*
+             <- return;;
+        *);;
+
+    *);;
+*);;

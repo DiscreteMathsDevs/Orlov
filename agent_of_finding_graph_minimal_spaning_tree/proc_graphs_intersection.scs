@@ -1,0 +1,302 @@
+scp_program -> proc_graphs_intersection
+(*	
+	-> rrel_params: ...
+	(*
+		-> rrel_1: rrel_in: _first_graph;;
+		-> rrel_2: rrel_in: _second_graph;;
+		-> rrel_3: rrel_in: _graphs_intersection;;
+	*);;
+		
+	-> rrel_operators: ... 
+	(*
+		-> rrel_init: ..proc_graphs_intersection_operator0_2
+		(*
+			<- genElStr5;;
+
+			-> rrel_1: rrel_fixed: rrel_scp_var: _graphs_intersection;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _graphs_intersection_vertices_set;;
+			-> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc4;;
+			-> rrel_5: rrel_fixed: rrel_scp_const: rrel_vertices;;
+
+			=> nrel_goto: ..proc_graphs_intersection_operator0_3;;
+		*);;	
+
+		-> ..proc_graphs_intersection_operator0_3
+		(*
+			<- genElStr5;;
+
+			-> rrel_1: rrel_fixed:  rrel_scp_var: _graphs_intersection;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_const: rrel_node: rrel_scp_var: _graphs_intersection_oredges_set;;
+			-> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc4;;
+			-> rrel_5: rrel_fixed: rrel_scp_const: rrel_oredges;;
+
+			=> nrel_goto: ..proc_graphs_intersection_operator0_4;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator0_4
+		(*
+			<- genElStr3;;
+
+			-> rrel_1: rrel_fixed: rrel_scp_const: concept_graph;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_fixed: rrel_scp_var: _graphs_intersection;;
+
+			=> nrel_goto: ..proc_graphs_intersection_operator1_1;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator1_1
+		(*
+			<- searchElStr5;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _first_graph;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _first_graph_vertices_set;;
+			-> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc4;;
+			-> rrel_5: rrel_fixed: rrel_scp_const: rrel_nodes;;
+
+			=> nrel_then: ..proc_graphs_intersection_operator1_2;;
+			=> nrel_else: ..proc_graphs_intersection_operator_return;;	
+		*);;
+
+		-> ..proc_graphs_intersection_operator1_2
+		(*
+			<- searchElStr5;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _first_graph;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _first_graph_edges_set;;
+			-> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc4;;
+			-> rrel_5: rrel_fixed: rrel_scp_const: rrel_oredges;;
+
+			=> nrel_then: ..proc_graphs_intersection_operator2;;
+			=> nrel_else: ..proc_graphs_intersection_operator_return;;	
+		*);;
+		
+		-> ..proc_graphs_intersection_operator2 
+		(*
+			<- searchSetStr3;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _first_graph_vertices_set;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _vertex;;
+
+			-> rrel_set_3: rrel_assign: rrel_scp_var: _copy_first_graph_vertices_set;;
+				
+			=> nrel_then: ..proc_graphs_intersection_operator3_1;;
+			=> nrel_else: ..proc_graphs_intersection_operator8;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator3_1
+		(*
+			<- searchElStr5;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _second_graph;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _second_graph_vertices_set;;
+			-> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc4;;
+			-> rrel_5: rrel_fixed: rrel_scp_const: rrel_nodes;;
+				
+			=> nrel_then: ..proc_graphs_intersection_operator3_2;;
+			=> nrel_else: ..proc_graphs_intersection_operator_return;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator3_2
+		(*
+			<- searchElStr5;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _second_graph;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _second_graph_edges_set;;
+			-> rrel_4: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc4;;
+			-> rrel_5: rrel_fixed: rrel_scp_const: rrel_oredges;;
+
+			=> nrel_then: ..proc_graphs_intersection_operator4;;
+			=> nrel_else: ..proc_graphs_intersection_operator_return;;	
+		*);;
+
+		-> ..proc_graphs_intersection_operator4
+		(*
+			<- searchElStr3;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _copy_first_graph_vertices_set;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _vertex_from_first;;
+				
+			=> nrel_then: ..proc_graphs_intersection_operator5;;
+			=> nrel_else: ..proc_graphs_intersection_operator8;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator5
+		(*
+			<- eraseEl;;
+				
+			-> rrel_1: rrel_fixed: rrel_pos_const_perm: rrel_scp_var: rrel_erase: _arc2;;
+	
+			=> nrel_goto: ..proc_graphs_intersection_operator6;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator6
+		(*
+			<- searchElStr3;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _second_graph_vertices_set;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_fixed: rrel_scp_var: _vertex_from_first;;
+				
+			=> nrel_then: ..proc_graphs_intersection_operator7;;
+			=> nrel_else: ..proc_graphs_intersection_operator4;;
+			
+		*);;
+			
+		-> ..proc_graphs_intersection_operator7
+		(*	
+			<- genElStr3;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _graphs_intersection_vertices_set;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_fixed: rrel_scp_var: _vertex_from_first;;
+
+			=> nrel_goto: ..proc_graphs_intersection_operator4;;	
+		*);;
+
+//////////////////////////////////////////////////////////////
+
+		-> ..proc_graphs_intersection_operator8
+		(*
+			<- searchSetStr3;;
+			
+			-> rrel_1: rrel_fixed: rrel_scp_var: _graphs_intersection_vertices_set;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _some_vertex;;
+			
+			-> rrel_set_3: rrel_assign: rrel_scp_var: _copy_graphs_intersection_vertices_set;;
+				
+			=> nrel_then: ..proc_graphs_intersection_operator9;;
+			=> nrel_else: ..proc_graphs_intersection_operator_return;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator9 
+		(*
+			<- searchElStr3;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _copy_graphs_intersection_vertices_set;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _vertex_in_intersection;;
+	
+			=> nrel_then: ..proc_graphs_intersection_operator10;;
+			=> nrel_else: ..proc_graphs_intersection_operator_return;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator10 
+		(*
+			<- eraseEl;;
+				
+			-> rrel_1: rrel_fixed: rrel_pos_const_perm: rrel_scp_var: rrel_erase: _arc2;;
+
+			=> nrel_goto: ..proc_graphs_intersection_operator11;;
+		*);;
+			
+		-> ..proc_graphs_intersection_operator11
+		(*
+			<- searchSetStr3;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _vertex_in_intersection;;
+			-> rrel_2: rrel_assign: rrel_common: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _some_vertex;;
+
+			-> rrel_set_2: rrel_assign: rrel_scp_var: _potential_oredges;;
+				
+			=> nrel_then: ..proc_graphs_intersection_operator12;;
+			=> nrel_else: ..proc_graphs_intersection_operator9;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator12
+		(*
+			<- searchElStr3;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _potential_oredges;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _some_oredge;;
+				
+			=> nrel_then: ..proc_graphs_intersection_operator13;;
+			=> nrel_else: ..proc_graphs_intersection_operator9;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator13
+		(*
+			<- eraseEl;;
+				
+			-> rrel_1: rrel_fixed: rrel_pos_const_perm: rrel_scp_var: rrel_erase: _arc2;;
+
+			=> nrel_goto: ..proc_graphs_intersection_operator14;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator14
+		(*
+			<- searchElStr3;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _vertex_in_intersection;;
+			-> rrel_2: rrel_fixed: rrel_scp_var: _some_oredge;;
+			-> rrel_3: rrel_assign: rrel_scp_var: _some_vertex;;
+				
+			=> nrel_then: ..proc_graphs_intersection_operator15;;
+			=> nrel_else: ..proc_graphs_intersection_operator12;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator15
+		(*
+			<- searchElStr3;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _graphs_intersection_vertices_set;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_fixed: rrel_scp_var: _some_vertex;;
+				
+			=> nrel_then: ..proc_graphs_intersection_operator16;;
+			=> nrel_else: ..proc_graphs_intersection_operator12;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator16
+		(*
+			<- searchElStr3;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _first_graph_edges_set;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_fixed: rrel_scp_var: _some_oredge;;
+				
+			=> nrel_then: ..proc_graphs_intersection_operator17;;
+			=> nrel_else: ..proc_graphs_intersection_operator12;;
+		*);;
+
+		-> ..proc_graphs_intersection_operator17
+		(*
+			<- searchElStr3;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _second_graph_edges_set;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_fixed: rrel_scp_var: _some_oredge;;
+				
+			=> nrel_then: ..proc_graphs_intersection_operator18;;
+			=> nrel_else: ..proc_graphs_intersection_operator12;;
+		*);;
+			
+		-> ..proc_graphs_intersection_operator18
+		(*
+			<- genElStr3;;
+				
+			-> rrel_1: rrel_fixed: rrel_scp_var: _graphs_intersection_oredges_set;;
+			-> rrel_2: rrel_assign: rrel_pos_const_perm: rrel_scp_var: _arc2;;
+			-> rrel_3: rrel_fixed: rrel_scp_var: _some_oredge;;
+				
+			=> nrel_goto: ..proc_graphs_intersection_operator12;;
+		*);;
+			
+		-> ..proc_graphs_intersection_operator_return 
+		(* 
+			<- return;;	
+		*);;
+	*);;
+*);;
+
+
